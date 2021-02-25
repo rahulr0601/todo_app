@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="banner">
+                <div class="banner-text">
+            <h2 align="center">ToDo</h2>
+                </div>
+            </div>
+<!--            <div class="shadow card"></div>-->
+                 <form method="post" >
+                             {% csrf_token %}
+
+                     <div class="form-group">
+                             <label>Task-Name</label>
+                             <input type="text" name="name" class="form-control"><br>
+<!--    </div>-->
+<!--    <div class="form-group">-->
+                            <label>Priority</label>
+                            <input type="text" name="priority"  class="form-control"><br>
+<!--    </div>-->
+<!--    <div class="form-group">-->
+                            <label>Task-Date</label>
+                            <input type="date" name="date" class="form-control"><br>
+<!--    </div>-->
+<!--    <div class="form-group">-->
+                            <input type="submit" value="Add Task" class="btn btn-success">
+                     </div>
+
+
+                 </form>
+
+
+
+            </div>
+            <div class="col-md-6">
+  {% for task in tasks %}
+<br>
+<br>
+<br>
+
+        <div class="shadow card" >
+<!--  <img src="..." class="card-img-top" alt="...">-->
+  <div class="card-body">
+    <h5 class="card-title">{{task.name}}</h5>
+    <p class="card-text">{{task.priority}}</p>
+    <p class="card-text">{{task.date}}</p>
+    <a href="{% url 'update' task.id %}" class="btn btn-primary">update</a>
+    <a href="{% url 'delete' task.id %}" class="btn btn-primary">delete</a>
+  </div>
+</div>
+
+{% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+<!--<div class="row">-->
+
+<!--        </div>-->
+<!--            </div>-->
+
+
+
+{% endblock %}
